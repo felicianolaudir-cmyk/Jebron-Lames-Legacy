@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ball_spawner.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Ball.tscn" id="2_ball"]
+
+[node name="BallSpawner" type="Marker2D"]
+script = ExtResource("1_script")
+ball_scene = ExtResource("2_ball")

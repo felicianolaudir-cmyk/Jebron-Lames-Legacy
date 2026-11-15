@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://k615ecs56qt4"]
+
+[ext_resource type="Script" uid="uid://bwfl4mbdxl70x" path="res://scripts/level.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/Platform.tscn" id="3_platform"]
+[ext_resource type="PackedScene" path="res://scenes/Spike.tscn" id="4_spike"]
+[ext_resource type="PackedScene" path="res://scenes/Door.tscn" id="6_door"]
+[ext_resource type="Texture2D" uid="uid://o4p5ikle7g18" path="res://assets/background.png" id="7_bg"]
+
+[node name="Level" type="Node2D" unique_id=354859683]
+script = ExtResource("1_script")
+level_name = "Nível 1"
+
+[node name="Background" type="Parallax2D" parent="." unique_id=493892595]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1152, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=227543219]
+texture = ExtResource("7_bg")
+centered = false
+
+[node name="Ground1" parent="." unique_id=267370730 instance=ExtResource("3_platform")]
+position = Vector2(0, 600)
+size = Vector2(900, 160)
+
+[node name="Ground2" parent="." unique_id=217634935 instance=ExtResource("3_platform")]
+position = Vector2(1050, 600)
+size = Vector2(430, 160)
+
+[node name="Plat1" parent="." unique_id=1257097730 instance=ExtResource("3_platform")]
+position = Vector2(1560, 520)
+size = Vector2(120, 24)
+
+[node name="Plat2" parent="." unique_id=221961581 instance=ExtResource("3_platform")]
+position = Vector2(1760, 440)
+size = Vector2(120, 24)
+
+[node name="Plat3" parent="." unique_id=2141664004 instance=ExtResource("3_platform")]
+position = Vector2(1960, 520)
+size = Vector2(140, 24)
+
+[node name="Ground3" parent="." unique_id=1273644413 instance=ExtResource("3_platform")]
+position = Vector2(2180, 600)
+size = Vector2(620, 160)
+
+[node name="WallLeft" parent="." unique_id=1855932666 instance=ExtResource("3_platform")]
+position = Vector2(-40, -400)
+size = Vector2(40, 1400)
+
+[node name="WallRight" parent="." unique_id=1250419076 instance=ExtResource("3_platform")]
+position = Vector2(2800, -400)
+size = Vector2(40, 1400)
+
+[node name="Spike1" parent="." unique_id=643526623 instance=ExtResource("4_spike")]
+position = Vector2(360, 600)
+
+[node name="Spike2" parent="." unique_id=1777333209 instance=ExtResource("4_spike")]
+position = Vector2(640, 600)
+
+[node name="Spike3" parent="." unique_id=795801766 instance=ExtResource("4_spike")]
+position = Vector2(1240, 600)
+
+[node name="Spike4" parent="." unique_id=1058580545 instance=ExtResource("4_spike")]
+position = Vector2(1298, 600)
+
+[node name="Spike5" parent="." unique_id=1043294234 instance=ExtResource("4_spike")]
+position = Vector2(2420, 600)
+
+[node name="Spike6" parent="." unique_id=1009902261 instance=ExtResource("4_spike")]
+position = Vector2(2478, 600)
+
+[node name="Door" parent="." unique_id=1293357562 instance=ExtResource("6_door")]
+position = Vector2(2700, 600)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1900171872]
+position = Vector2(100, 550)
+
+[node name="Player" parent="." unique_id=149716599 instance=ExtResource("2_player")]
+position = Vector2(100, 550)
+spawn_point = NodePath("../SpawnPoint")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=229752404]
+
+[node name="Info" type="Label" parent="HUD" unique_id=1781526330]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 1136.0
+offset_bottom = 40.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "Mortes: 0"
+
+[node name="WinPanel" type="ColorRect" parent="HUD" unique_id=42294292]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="WinLabel" type="Label" parent="HUD/WinPanel" unique_id=686530351]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.55, 0, 1)
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1

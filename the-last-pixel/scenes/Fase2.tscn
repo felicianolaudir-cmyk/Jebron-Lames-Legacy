@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/Platform.tscn" id="3_platform"]
+[ext_resource type="PackedScene" path="res://scenes/Spike.tscn" id="4_spike"]
+[ext_resource type="PackedScene" path="res://scenes/Checkpoint.tscn" id="5_check"]
+[ext_resource type="PackedScene" path="res://scenes/Door.tscn" id="6_door"]
+[ext_resource type="Texture2D" path="res://assets/background.png" id="7_bg"]
+[ext_resource type="PackedScene" path="res://scenes/BallSpawner.tscn" id="8_spawner"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_script")
+level_name = "Nível 2"
+
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1152, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+centered = false
+texture = ExtResource("7_bg")
+
+[node name="Ground1" parent="." instance=ExtResource("3_platform")]
+position = Vector2(0, 600)
+size = Vector2(700, 160)
+
+[node name="Ground2" parent="." instance=ExtResource("3_platform")]
+position = Vector2(850, 600)
+size = Vector2(400, 160)
+
+[node name="Plat1" parent="." instance=ExtResource("3_platform")]
+position = Vector2(1330, 530)
+size = Vector2(100, 24)
+
+[node name="Plat2" parent="." instance=ExtResource("3_platform")]
+position = Vector2(1510, 460)
+size = Vector2(100, 24)
+
+[node name="Plat3" parent="." instance=ExtResource("3_platform")]
+position = Vector2(1700, 390)
+size = Vector2(100, 24)
+
+[node name="Plat4" parent="." instance=ExtResource("3_platform")]
+position = Vector2(1900, 470)
+size = Vector2(100, 24)
+
+[node name="Ground3" parent="." instance=ExtResource("3_platform")]
+position = Vector2(2090, 600)
+size = Vector2(710, 160)
+
+[node name="WallLeft" parent="." instance=ExtResource("3_platform")]
+position = Vector2(-40, -400)
+size = Vector2(40, 1400)
+
+[node name="WallRight" parent="." instance=ExtResource("3_platform")]
+position = Vector2(2800, -400)
+size = Vector2(40, 1400)
+
+[node name="Spike1" parent="." instance=ExtResource("4_spike")]
+position = Vector2(330, 600)
+
+[node name="Spike2" parent="." instance=ExtResource("4_spike")]
+position = Vector2(388, 600)
+
+[node name="Spike3" parent="." instance=ExtResource("4_spike")]
+position = Vector2(1060, 600)
+
+[node name="Spike4" parent="." instance=ExtResource("4_spike")]
+position = Vector2(2480, 600)
+
+[node name="Spike5" parent="." instance=ExtResource("4_spike")]
+position = Vector2(2538, 600)
+
+[node name="Checkpoint1" parent="." instance=ExtResource("5_check")]
+position = Vector2(890, 600)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("5_check")]
+position = Vector2(2330, 600)
+
+[node name="BallSpawner1" parent="." instance=ExtResource("8_spawner")]
+position = Vector2(620, 430)
+horizontal_speed = -90.0
+
+[node name="BallSpawner2" parent="." instance=ExtResource("8_spawner")]
+position = Vector2(1180, 430)
+horizontal_speed = -90.0
+
+[node name="BallSpawner3" parent="." instance=ExtResource("8_spawner")]
+position = Vector2(2600, 400)
+horizontal_speed = -100.0
+
+[node name="Door" parent="." instance=ExtResource("6_door")]
+position = Vector2(2740, 600)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(100, 550)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(100, 550)
+spawn_point = NodePath("../SpawnPoint")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Info" type="Label" parent="HUD"]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 1136.0
+offset_bottom = 40.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "Mortes: 0"
+
+[node name="WinPanel" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="WinLabel" type="Label" parent="HUD/WinPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.55, 0, 1)
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
